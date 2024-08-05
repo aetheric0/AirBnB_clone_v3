@@ -17,7 +17,7 @@ def get_states():
     retrieved_states = []
     for state in state_objects.values():
         retrieved_states.append(state.to_dict())
-    return jsonify(retrieved_states)
+    return jsonify(retrieved_states), 200
 
 
 @app_views.route('/states/<state_id>', strict_slashes=False)
@@ -53,7 +53,7 @@ def post_state():
     if body is None:
         abort(400, 'Not a JSON')
     if 'name' not in body:
-        abort('400', 'Missing name')
+        abort(400, 'Missing name')
     new_state = State(**body)
     new_state.save()
     return jsonify(new_state.to_dict()), 201
