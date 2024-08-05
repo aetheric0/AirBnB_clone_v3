@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 """ API for HBNB Clone
 """
-
 from flask import Flask
+from os import getenv
+app = Flask(__name__)
+
 from models import storage
 from api.v1.views import app_views
-from sys import getenv
 
-app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
-@app.teardown.appcontext
-def close():
+@app.teardown_appcontext
+def close(exception):
     storage.close()
 
 if __name__ == '__main__':
@@ -24,4 +24,4 @@ if __name__ == '__main__':
         port = getenv('HBNB_API_PORT')
     else:
         port = 5000
-    app.run(host=host, port=port)
+    app.run(host=host, port=port, threaded=True)
