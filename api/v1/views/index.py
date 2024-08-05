@@ -17,4 +17,9 @@ def status():
 def stats():
     """ Returns the number of items in storage
     """
-    return jsonify(storage.count())
+    classes = ['Amenity', 'City', 'Place', 'Review', 'State', 'User']
+    json_keys = ['amenities', 'cities', 'places', 'reviews', 'states', 'users']
+    dictionary = {}
+    for i, cls in enumerate(classes):
+        dictionary[json_keys[i]] = storage.count(cls)
+    return jsonify(dictionary)
