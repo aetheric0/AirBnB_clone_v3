@@ -7,7 +7,6 @@ from models.state import State
 from models import storage
 from api.v1.views import app_views
 
-state_objects = storage.all(State)
 
 
 @app_views.route('/states', strict_slashes=False)
@@ -15,6 +14,7 @@ def get_states():
     """ Retrieves states from storage
     """
     retrieved_states = []
+    state_objects = storage.all(State)
     for state in state_objects.values():
         retrieved_states.append(state.to_dict())
     return jsonify(retrieved_states), 200
