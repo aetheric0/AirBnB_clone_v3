@@ -8,7 +8,6 @@ from models import storage
 from api.v1.views import app_views
 
 
-
 @app_views.route('/states', strict_slashes=False)
 def get_states():
     """ Retrieves states from storage
