@@ -58,8 +58,8 @@ def post_city(state_id):
         body = request.get_json()
         if body is None:
             abort(400, 'Not a JSON')
-            if 'name' not in body:
-                abort(400, 'Missing name')
+        if 'name' not in body:
+            abort(400, 'Missing name')
         new_city = City(**body)
         new_city.state_id = state_id
         new_city.save()
