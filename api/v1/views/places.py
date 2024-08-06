@@ -48,7 +48,8 @@ def delete_place_by_id(place_id):
         abort(404)
 
 
-@app_views.route('/cities/<city_id>/places', methods=['POST'], strict_slashes=False)
+@app_views.route('/cities/<city_id>/places',
+                 methods=['POST'], strict_slashes=False)
 def post_place(city_id):
     """ Adds a new user to storage
     """
